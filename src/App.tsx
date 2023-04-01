@@ -110,7 +110,7 @@ function App() {
           itemSize={itemSize}
           direction="right"
           propsSliders={line2}
-          animationTime={5}
+          animationTime={animationTime}
           uniqueKey="line2"
         ></Carousel>
       </div>

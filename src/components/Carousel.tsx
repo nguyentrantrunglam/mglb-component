@@ -33,11 +33,10 @@ export function Carousel(props: ICarouselProps) {
       setSlider(newSlider);
     }
   }
-  function getSlideAnimation(isPause?: boolean) {
+  function getSlideAnimation() {
     const app = document.querySelector(".app");
     const keyFrames = document.createElement("style");
     keyFrames.setAttribute("id", `keyFrames-${props.uniqueKey}`);
-    // console.log(slider.length, props.itemSize.width);
     keyFrames.innerHTML = `
   @keyframes slideleft-${props.uniqueKey} {
     0% {
