@@ -1,9 +1,18 @@
 .app {
+  max-width: 1100vw;
+  overflow: hidden;
   .slider {
     width: 100vw;
     overflow: hidden;
     display: flex;
     flex-direction: column;
     justify-content: center;
+  }
+  .container {
+    margin-left: 100px;
+    margin-right: 100px;
+    // border-left: 1px solid #000;
+    // border-right: 1px solid #000;
+    // overflow: hidden;
   }
 }

@@ -1,6 +1,7 @@
 import * as React from "react";
 import "./App.scss";
 import { Carousel } from "./components/Carousel";
+import { SliderLayout } from "./components/SliderLayout";
 
 function App() {
   const line1 = [
@@ -93,12 +94,12 @@ function App() {
   ];
   const animationTime = 60;
   const itemSize = {
-    width: 200,
-    height: 86,
+    width: 180,
+    height: 94,
   };
   return (
     <div className="app">
-      <div className="slider">
+      {/* <div className="slider">
         <Carousel
           itemSize={itemSize}
           direction="left"
@@ -113,6 +114,9 @@ function App() {
           animationTime={animationTime}
           uniqueKey="line2"
         ></Carousel>
+      </div> */}
+      <div className="container">
+        <SliderLayout propsSliders={line1}></SliderLayout>
       </div>
     </div>
   );
