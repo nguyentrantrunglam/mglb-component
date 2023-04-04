@@ -1,9 +1,11 @@
-import * as React from "react";
+import { useState, useRef } from "react";
 import "./App.scss";
 import { Carousel } from "./components/Carousel";
 import { SliderLayout } from "./components/SliderLayout";
 
 function App() {
+  const timerRef = useRef<any>();
+
   const line1 = [
     {
       id: 1,
@@ -97,26 +99,70 @@ function App() {
     width: 180,
     height: 94,
   };
+  const [listImage, setListImage] = useState([
+    { id: 1, url: "1", position: 1 },
+    { id: 2, url: "2", position: 2 },
+    { id: 3, url: "3", position: 3 },
+    { id: 4, url: "4", position: 0 },
+  ]);
+  const active = listImage.findIndex((item) => item.position === 2);
+  const [activeIndex, setActiveIndex] = useState(active);
+  const handleClickImage = (index: number) => {
+    swapImage(index);
+    setActiveIndex(index);
+  };
+  const swapImage = (index: number) => {
+    const list = [...listImage];
+    list.forEach((item) => {
+      item.position = 0;
+    });
+    if (index === 0) {
+      list[0].position = 2;
+      list[1].position = 3;
+      list[list.length - 1].position = 1;
+    } else if (index === list.length - 1) {
+      list[index].position = 2;
+      list[0].position = 3;
+      list[index - 1].position = 1;
+    } else {
+      list[index].position = 2;
+      list[index + 1].position = 3;
+      list[index - 1].position = 1;
+    }
+    setListImage(list);
+  };
+
   return (
     <div className="app">
-      {/* <div className="slider">
-        <Carousel
-          itemSize={itemSize}
-          direction="left"
-          propsSliders={line1}
-          animationTime={animationTime}
-          uniqueKey="line1"
-        ></Carousel>
-        <Carousel
-          itemSize={itemSize}
-          direction="right"
-          propsSliders={line2}
-          animationTime={animationTime}
-          uniqueKey="line2"
-        ></Carousel>
-      </div> */}
       <div className="container">
-        <SliderLayout propsSliders={line1}></SliderLayout>
+        <div className="list-image">
+          {listImage.map((item, index) => {
+            return (
+              <div
+                key={item.id}
+                onClick={() => handleClickImage(index)}
+                className={`image position-${item.position}`}
+              >
+                {item.url}
+              </div>
+            );
+          })}
+          {/* <div className="image top"></div> */}
+        </div>
+        <div className="client-info"></div>
+      </div>
+      <div className="list-buttons">
+        {listImage.map((item, index) => {
+          return (
+            <button
+              key={item.id}
+              onClick={() => handleClickImage(index)}
+              className={`button`}
+            >
+              {item.url}
+            </button>
+          );
+        })}
       </div>
     </div>
   );
