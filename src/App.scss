@@ -1,75 +1,9 @@
 .app {
-  max-width: 1100vw;
-  overflow: hidden;
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
   width: 100vw;
+  height: 100vh;
+  background: #f5f5f5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   flex-direction: column;
-  .container {
-    background: #f8f8f8;
-    position: relative;
-    width: 1160px;
-    height: 520px;
-    .list-image {
-      width: 100%;
-      height: 100%;
-      background: #837272f1;
-      .image {
-        border-radius: 50%;
-        position: absolute;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        transition: all 1s ease-in-out;
-      }
-      .position-1 {
-        left: 269px;
-        top: 0px;
-        width: 155px;
-        height: 155px;
-        z-index: 2;
-        background-color: red;
-      }
-      .position-2 {
-        left: 0px;
-        top: 160px;
-        width: 255px;
-        height: 255px;
-        z-index: 1;
-        background-color: white;
-      }
-
-      .position-3 {
-        left: 269px;
-        top: calc(100% - 155px);
-        width: 155px;
-        height: 155px;
-        z-index: 3;
-        background-color: purple;
-      }
-      .position-0 {
-        left: 500px;
-        top: calc(155px);
-        width: 55px;
-        height: 55px;
-        z-index: 4;
-        background-color: orange;
-      }
-    }
-    .client-info {
-      position: absolute;
-      right: 0;
-      top: 42px;
-      width: 700px;
-      height: 436px;
-      background: #c89b9bf1;
-      z-index: 100;
-    }
-  }
-  .list-buttons {
-    display: flex;
-  }
 }
