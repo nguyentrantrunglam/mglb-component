@@ -20,8 +20,9 @@
       justify-content: center;
       border-radius: 12px;
       box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
-      transition: all 1s ease;
+      transition: all .5s ease-out;
       z-index: 2;
+      cursor: pointer;
       .card-image {
         width: 90%;
         height: 90%;
