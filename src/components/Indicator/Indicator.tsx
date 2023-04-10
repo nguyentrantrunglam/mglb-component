@@ -3,11 +3,11 @@ import "./Indicator.scss";
 
 export default function Indicator({
   List,
-  activeTab,
-  handleSetActiveTab,
+  activeTabId,
+  handleSetActiveTabId,
 }: MyProps) {
   function checkActive(id: number) {
-    return id == activeTab ? "active" : "non-active";
+    return id == activeTabId ? "active" : "non-active";
   }
 
   return (
@@ -16,10 +16,8 @@ export default function Indicator({
         <div
           key={item.id}
           className={`indicator-item ${checkActive(item.id)}`}
-          onClick={() => handleSetActiveTab(item.id)}
-        >
-          {item.id}
-        </div>
+          onClick={() => handleSetActiveTabId(item.id)}
+        ></div>
       ))}
     </div>
   );

@@ -8,6 +8,6 @@ export interface Item {
 
 export interface MyProps {
   List: Array<Item>;
-  activeTab: number;
-  handleSetActiveTab: any;
+  activeTabId: number;
+  handleSetActiveTabId: any;
 }

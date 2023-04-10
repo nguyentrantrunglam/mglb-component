@@ -7,7 +7,7 @@
     align-self: center;
 
     &-item {
-
+        height: 5px;
         width: 40px;
         font-size: 13px;
         border: none;
@@ -16,19 +16,19 @@
         justify-items: flex-start;
         text-align: left;
         color: black;
-        transition: all 0.4s ease;
+        transition: all 1s ease;
         cursor: pointer;
         padding: 0 12px;
-        box-shadow: 3px 3px 3px #dcdcdc;
+
         background: red;
 
         &.active {
-            background-color: #537FE7;
+            background-color: #333;
             width: 100px
         }
 
         &.non-active {
-            background: #E9F8F9;
+            background: #ddd;
         }
     }
 }
