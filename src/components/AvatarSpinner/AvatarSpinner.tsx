@@ -4,10 +4,6 @@ import Indicator from "../Indicator/Indicator";
 import { Item } from "../Interface";
 import Avatars from "../Avatar/Avatar";
 import "./AvatarSpinner.scss";
-function sleep(ms: number) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
-}
-const delay = 600;
 export default function AvatarSpinner() {
   const templateData = (): Array<Item> => {
     let list: Array<Item> = [];
@@ -64,7 +60,10 @@ export default function AvatarSpinner() {
   const [activeTabId, setActiveTabId] = useState(0);
   const [spinDirection, setSpinDirection] = useState(true);
   function handleSelectTab(id: number) {
-    if ((activeTabId + 1) % List.length == id) {
+    if (
+      (activeTabId + 1) % List.length == id ||
+      (activeTabId + 2) % List.length == id
+    ) {
       setSpinDirection(true);
     } else {
       setSpinDirection(false);
@@ -76,7 +75,7 @@ export default function AvatarSpinner() {
   useEffect(() => {
     const interval = setInterval(() => {
       const nextPage = (activeTabId + 1) % List.length;
-      setActiveTabId(nextPage);
+      handleSelectTab(nextPage);
     }, 5000);
     return () => clearInterval(interval);
   }, [activeTabId]);

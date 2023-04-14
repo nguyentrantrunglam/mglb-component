@@ -14,31 +14,6 @@ export default function Avatars({
   spinDirection,
 }: AvatarProps) {
   const [avatars, animate] = useAnimate();
-
-  function checkActive(id: number): string {
-    const listLength = List.length;
-    let result: string;
-    const index = List.findIndex((item) => item.id == id);
-    const activeIndex = List.findIndex((item) => item.id == activeTabId);
-    const previousIndex = (activeIndex - 1 + listLength) % listLength;
-    const nextIndex = (activeIndex + 1) % listLength;
-
-    switch (true) {
-      case List[index].id == List[activeIndex].id:
-        result = "ACTIVE";
-        break;
-      case List[index].id == List[previousIndex].id:
-        result = "LEFT";
-        break;
-      case List[index].id == List[nextIndex].id:
-        result = "RIGHT";
-        break;
-      default:
-        result = "HIDDEN";
-        break;
-    }
-    return result;
-  }
   const STEP_DEGREE = 1;
   function createCircleCoordination() {
     const centreX = 150; // centre x of circle
@@ -78,9 +53,8 @@ export default function Avatars({
       current = direction
         ? (current + _step) % 360
         : (current + _step + 360) % 360;
-      console.log(current);
     }
-    console.log({ positionX, positionY });
+
     return { positionX, positionY };
   }
   function createAnimationPath(from: number, to: number, direction: boolean) {
@@ -105,10 +79,18 @@ export default function Avatars({
         item.position,
         _spinDirection
       );
-      animate(`.avatar-${item.id}`, activePosition.animate, {
-        ...activePosition.options,
-        ease: "linear",
-      });
+      animate(
+        `.avatar-${item.id}`,
+        {
+          height: item.id == activeTabId ? 150 : 100,
+          width: item.id == activeTabId ? 150 : 100,
+          ...activePosition.animate,
+        },
+        {
+          ...activePosition.options,
+          ease: "linear",
+        }
+      );
     });
   }, [activeTabId]);
   return (
@@ -119,7 +101,9 @@ export default function Avatars({
       {List.map((item: Item) => (
         <div
           key={`avatar-${item.id}`}
-          className={`avatar avatar-${item.id} `}
+          className={`avatar avatar-${item.id}  ${
+            item.id == activeTabId ? "active" : ""
+          }`}
           onClick={() => handleSetActiveTabId(item.id)}
         >
           <img src={item.image} />
