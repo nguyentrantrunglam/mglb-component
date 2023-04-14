@@ -1,0 +1,99 @@
+.carousel-container {
+    display: flex;
+    flex-direction: row;
+    height: 300px;
+    width: 550px;
+    background-color: #ccc;
+    overflow: hidden;
+    position: relative;
+
+    .carousel-previous {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        height: 30px;
+        width: 30px;
+        background-color: rgba(0, 0, 0, 0.6);
+        z-index: 4;
+        transform: scaleX(-1);
+
+        img {
+            height: 30px;
+        }
+    }
+
+    .carousel-next {
+        position: absolute;
+        top: 50%;
+        right: 0;
+        height: 30px;
+        width: 30px;
+        background-color: rgba(0, 0, 0, 0.6);
+        z-index: 4;
+
+
+
+        img {
+            height: 30px;
+        }
+    }
+
+    .carousel-item {
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        top: 0;
+        left: 0;
+        opacity: 1;
+        background-image: url("https://www.google.com/url?sa=i&url=https%3A%2F%2Fpixabay.com%2Fimages%2Fsearch%2Fnature%2F&psig=AOvVaw1mo93wdcnK6-ilK19u9dXu&ust=1681194036516000&source=images&cd=vfe&ved=0CBEQjRxqFwoTCKCLzPzVnv4CFQAAAAAdAAAAABAE");
+        transition: all 1s ease;
+
+        image {
+            height: 300px;
+            position: absolute;
+            width: 100%;
+            object-fit: cover;
+        }
+
+        &.non-active {
+            background-color: #ccc;
+            z-index: -1;
+            left: 0;
+            opacity: 0;
+
+        }
+
+        &.left {
+            left: -100%;
+            z-index: 1;
+            opacity: 0;
+            background-color: #bfb8fc;
+
+
+        }
+
+        &.active {
+            left: 0;
+            z-index: 2;
+            background-color: #b8fcc9;
+
+        }
+
+        &.right {
+            z-index: 1;
+            left: 100%;
+            opacity: 0;
+            background-color: #fcb8b8;
+
+        }
+
+
+
+
+
+
+
+    }
+}

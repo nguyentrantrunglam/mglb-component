@@ -1,0 +1,58 @@
+.avatars {
+    height: 300px;
+    width: 300px;
+    background-color: transparent;
+    position: relative;
+    border: 1px solid black;
+    border-radius: 50%;
+
+    .avatar {
+        position: absolute;
+        height: 100px;
+        width: 100px;
+        background: red;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+        top: 100px;
+        left: 100%;
+
+        img {
+            height: 100%;
+            width: 100%;
+
+        }
+
+        // &.left {
+        //     top: 0;
+        //     left: 150px;
+        // }
+
+        // &.active {
+
+        //     height: 150px;
+        //     width: 150px;
+        // }
+
+        // &.right {
+        //     top: 200px;
+        //     left: 150px;
+        // }
+
+        // &.non-active {
+        //     top: 100px;
+        //     left: 100%;
+        // }
+
+    }
+
+    &.disabled-size {
+        .avatar {
+            height: 100px !important;
+            width: 100px !important;
+        }
+    }
+}
