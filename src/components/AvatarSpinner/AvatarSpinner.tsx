@@ -11,51 +11,66 @@ const delay = 600;
 export default function AvatarSpinner() {
   const templateData = (): Array<Item> => {
     let list: Array<Item> = [];
-    for (let i = 0; i < 4; i++) {
+    for (let i = 0; i < 10; i++) {
       list.push({
         id: i,
         label: `Card ${i}`,
         title: `this is a Title ${i}`,
         description: "this is description",
-        image: `https://source.unsplash.com/random/550x300?sig=${(
-          Math.random() * 10
-        ).toFixed(0)}`,
+        image: `https://picsum.photos/200/300?random=${i}`,
+        position: 0,
+        oldPosition: 0,
       });
     }
     return list;
   };
+  const POSITION: { [key: string]: number } = {
+    ACTIVE: 270,
+    LEFT: 330,
+    RIGHT: 210,
+    HIDDEN: 90,
+  };
+  function setListPosition(id: number) {
+    const listLength = List.length;
+    const activeIndex = List.findIndex((item) => item.id == id);
+    const previousIndex = (activeIndex - 1 + listLength) % listLength;
+    const nextIndex = (activeIndex + 1) % listLength;
+    const list = JSON.parse(JSON.stringify(List));
+    list.forEach((item: Item, index: number) => {
+      switch (index) {
+        case activeIndex:
+          item.oldPosition = item.position;
+          item.position = POSITION.ACTIVE;
+          break;
+        case previousIndex:
+          item.oldPosition = item.position;
+          item.position = POSITION.LEFT;
+          break;
+        case nextIndex:
+          item.oldPosition = item.position;
+          item.position = POSITION.RIGHT;
+          break;
+        default:
+          item.oldPosition = item.position;
+          item.position = POSITION.HIDDEN;
+          break;
+      }
+    });
+    setList(list);
+  }
 
   const [List, setList] = useState(templateData);
   const [onAnimation, setOnAnimation] = useState(false);
   const [activeTabId, setActiveTabId] = useState(0);
-  function HandleSetTab() {
-    const start = activeTabId;
-    setActiveTabId(start);
-    const step1 = (start + 1) % List.length;
-    const step2 = (start + 2) % List.length;
-    sleep(delay)
-      // start animation
-      .then(() => {
-        setOnAnimation(true);
-        setActiveTabId(step1);
-      })
-      // animation happen
-      .then(() => sleep(delay - 150))
-      // end animation
-      .then(() => {
-        setOnAnimation(false);
-        setActiveTabId(step2);
-      });
-  }
+  const [spinDirection, setSpinDirection] = useState(true);
   function handleSelectTab(id: number) {
-    if (
-      (activeTabId + 1) % List.length == id ||
-      (activeTabId - 1 + List.length) % List.length == id
-    ) {
-      setActiveTabId(id);
+    if ((activeTabId + 1) % List.length == id) {
+      setSpinDirection(true);
     } else {
-      HandleSetTab();
+      setSpinDirection(false);
     }
+    setListPosition(id);
+    setActiveTabId(id);
   }
 
   useEffect(() => {
@@ -72,6 +87,7 @@ export default function AvatarSpinner() {
         onAnimated={onAnimation}
         activeTabId={activeTabId}
         handleSetActiveTabId={handleSelectTab}
+        spinDirection={spinDirection}
       />
       <div className="carousel-slider">
         <Slider

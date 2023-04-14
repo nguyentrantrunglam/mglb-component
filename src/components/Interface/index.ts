@@ -4,6 +4,8 @@ export interface Item {
   title: string;
   description: string;
   image: string;
+  position: number;
+  oldPosition: number;
 }
 
 export interface MyProps {

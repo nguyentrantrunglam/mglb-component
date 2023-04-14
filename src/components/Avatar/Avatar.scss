@@ -3,6 +3,8 @@
     width: 300px;
     background-color: transparent;
     position: relative;
+    border: 1px solid black;
+    border-radius: 50%;
 
     .avatar {
         position: absolute;
@@ -14,7 +16,7 @@
         justify-content: center;
         overflow: hidden;
         border-radius: 50%;
-        transition: all 1s ease;
+        transform: translate(-50%, -50%);
 
         img {
             height: 100%;
@@ -22,27 +24,27 @@
 
         }
 
-        &.left {
-            top: 0;
-            left: 150px;
-        }
+        // &.left {
+        //     top: 0;
+        //     left: 150px;
+        // }
 
-        &.active {
-            top: 75px;
-            left: 0;
-            height: 150px;
-            width: 150px;
-        }
+        // &.active {
+        //     top: 75px;
+        //     left: 0;
+        //     height: 150px;
+        //     width: 150px;
+        // }
 
-        &.right {
-            top: 200px;
-            left: 150px;
-        }
+        // &.right {
+        //     top: 200px;
+        //     left: 150px;
+        // }
 
-        &.non-active {
-            top: 100px;
-            left: 100%;
-        }
+        // &.non-active {
+        //     top: 100px;
+        //     left: 100%;
+        // }
 
     }
 
